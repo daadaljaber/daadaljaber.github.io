@@ -13,9 +13,9 @@ window.SITE = {
   /* ---------- Links & contact ---------- */
   profile: {
     name: "Daad Aljaber",
-    email: "",                                   // TODO e.g. "daad.aljaber@yourmail.com"
+    email: "daadtaljaber@gmail.com",
     location: "Riyadh, Saudi Arabia",
-    linkedin: "",                                // TODO e.g. "https://www.linkedin.com/in/your-handle"
+    linkedin: "https://www.linkedin.com/in/daadaljaber",
     github: "https://github.com/daadaljaber",
     cv: "assets/cv/Daad-Aljaber-CV.pdf",         // replace the PDF in /assets/cv with your real CV
     // Optional: paste a Formspree endpoint (https://formspree.io) to receive form
@@ -35,60 +35,60 @@ window.SITE = {
         "CYS402 Secure Software Development",
         "CYS405 Penetration Testing & Ethical Hacking",
         "CYS406 Data and Network Security",
+        "IS311 Web Development",
+        "IS361 Project Management",
+        "IS241 Database Management and Applications",
+        "IS231 Systems Analysis and Design",
         "ETHC303 Ethics of Computing"
       ],
-      notes: ""                                  // TODO optional: GPA, honours, awards
+      notes: ""                                  // optional, e.g. "GPA: 2.95/4.0"
     }
   ],
 
   /* ---------- Experience & programs (newest first) ---------- */
   experience: [
     {
-      org: "Riyad Bank",
-      role: "Intern",
-      dates: "",                                 // TODO e.g. "Jun 2026 – Aug 2026"
-      description: "",                           // TODO one or two sentences on the team and your work
-      achievements: [],                          // TODO e.g. ["Mapped access controls for …"]
-      skills: []                                 // TODO e.g. ["Risk assessment", "Policy review"]
-    },
-    {
-      org: "McKinsey.org",
-      role: "Forward Program",
-      dates: "2026",
-      description: "",                           // TODO what the program covered for you
-      achievements: [],
-      skills: []                                 // TODO e.g. ["Structured problem solving", "Communication"]
+      org: "Consultancy Route for Students (CRS)",
+      role: "Cases Team Member",
+      dates: "Sep 2023 – Present",
+      description: "Student consulting club in Riyadh. I joined the Media Team in September 2023 and moved to the Cases Team in April 2026, where I work on student consulting cases.",
+      achievements: [
+        "Cases Team Member, Apr 2026 – present",
+        "Media Team Member, Sep 2023 – Apr 2026"
+      ],
+      skills: ["Consulting", "Creative problem solving"]
     },
     {
       org: "Tuwaiq Academy",
       role: "Security Operations Center (SOC) Program",
-      dates: "",                                 // TODO
-      description: "",                           // TODO
-      achievements: [],
-      skills: ["Security operations"]            // add the tools you used, e.g. "Splunk"
+      dates: "Sep 2026",
+      description: "A 30-hour Security Operations Center program, completed 6–17 September 2026, with hands-on training across the core work of a SOC analyst.",
+      achievements: [
+        "Hands-on training in SIEM, log analysis, threat detection, and incident investigation",
+        "Covered networking fundamentals and day-to-day SOC operations"
+      ],
+      skills: ["SIEM", "Log analysis", "Threat detection", "Incident investigation", "Networking"]
     },
     {
-      org: "Consultancy Route for Students (CRS)",
-      role: "Case Team and Media Team",
-      dates: "",                                 // TODO
-      description: "",                           // TODO the kinds of cases and media work you did
+      org: "McKinsey.org",
+      role: "Forward Program",
+      dates: "2026, in progress",
+      description: "",                           // optional: what the program covers for you
       achievements: [],
       skills: []
-    }
-    /* Template — copy for other volunteering or development experience:
-    ,{
-      org: "",
-      role: "",
-      dates: "",
-      description: "",
+    },
+    {
+      org: "Riyad Bank",
+      role: "Customer Service Intern, Private Banking",
+      dates: "Jul 2022 – Aug 2022",
+      description: "Handled client inquiries and supported day-to-day banking service requests in a private banking environment.",
       achievements: [],
-      skills: []
+      skills: ["Client service", "Banking operations"]
     }
-    */
   ],
 
   /* ---------- Projects ----------
-     image: path to a screenshot (replace the placeholder SVGs in /assets/img/projects)
+     image: path to a screenshot in /assets/img/projects
      github: repository URL; leave "" to hide the link                              */
   projects: [
     {
@@ -113,15 +113,20 @@ window.SITE = {
     },
     {
       title: "Cybersecurity Labs",
-      summary: "Hands-on SIEM, log analysis, threat intelligence, and incident response exercises.",
-      context: "Security operations practice",
+      summary: "Hands-on practice across security operations, web application security, penetration testing, and network defense.",
+      context: "Tuwaiq Academy SOC Program and PSU cybersecurity coursework",
       image: "assets/img/projects/labs.svg",
-      overview: "A collection of security operations exercises covering SIEM investigation in Splunk, log analysis, threat intelligence, and incident response.",
-      problem: "",                               // TODO the scenarios you investigated
-      role: [],                                  // TODO what you did in each lab
-      tech: ["Splunk", "SIEM"],
-      outcomes: [],                              // TODO
-      github: ""                                 // TODO
+      overview: "A collection of practical security work from my SOC training and cybersecurity courses, covering both the defensive and offensive sides of security.",
+      problem: "",
+      role: [
+        "Security operations: SIEM, log analysis, threat detection, and incident investigation (Tuwaiq Academy SOC Program)",
+        "Web application security: SQL injection labs with Burp Suite and PortSwigger Web Security Academy (CYS402)",
+        "Penetration testing: exploitation, detection, and mitigation of CVE-2022-46169 in the TryHackMe Cactus room (CYS405)",
+        "Network defense: designing a defensive network in Cisco Packet Tracer (CYS406)"
+      ],
+      tech: ["SIEM", "Burp Suite", "PortSwigger Web Security Academy", "TryHackMe", "Cisco Packet Tracer"],
+      outcomes: [],
+      github: ""                                 // optional: link a repo with your lab write-ups
     },
     {
       title: "Cacti RCE assessment",
@@ -150,6 +155,67 @@ window.SITE = {
       github: ""
     },
     {
+      title: "COOP CV Builder",
+      summary: "A web platform that helps students build professional CVs for COOP and internship applications.",
+      context: "IS311 Web Development, team of three",
+      image: "assets/img/projects/coop-cv-builder.png",
+      overview: "A full-stack website where senior students create and customize a CV, choose from several templates, preview and download it, browse internship opportunities, and read application tips. Records are stored and managed in a database.",
+      problem: "Students preparing for COOP and internship applications often start from a blank page and aren't sure what a CV needs to meet program requirements.",
+      role: [
+        "Built the web-based CV builder with dynamic forms, database connectivity, and data management",
+        "Worked across frontend development, backend integration, database management, and CRUD operations"
+      ],
+      tech: ["HTML", "CSS", "Bootstrap", "JavaScript", "Node.js", "Express", "MySQL"],
+      outcomes: ["Final project grade: 19/20"],
+      github: ""                                 // TODO repository link
+    },
+    {
+      title: "FitSync",
+      summary: "Project plan for an integrated gym management system.",
+      context: "IS361 Project Management, team of five",
+      image: "assets/img/projects/fitsync.png",
+      overview: "FitSync is an integrated gym management system that replaces manual operations with one platform for member registration, subscription plans, trainers, class scheduling and booking, payment tracking, and reporting.",
+      problem: "A gym run on manual processes deals with duplicated records, errors, and slow administration, with no single place to manage members, classes, and payments.",
+      role: [
+        "Planned the system through a project charter, stakeholder and scope analysis, and a hybrid development approach",
+        "Produced the work breakdown structure, cost estimates, Gantt chart, and network diagram",
+        "Prepared the risk reporting, based on PMBOK guidelines",
+        "Tracked tasks, workload, and milestones in ClickUp"
+      ],
+      tech: ["ClickUp", "WBS", "Gantt chart", "PMBOK risk analysis"],
+      outcomes: ["Delivered a complete project plan, including a $57,200 bottom-up cost estimate"],
+      github: ""
+    },
+    {
+      title: "Airline Management System",
+      summary: "A relational database design for running an airline.",
+      context: "IS241 Database Management and Applications",
+      image: "assets/img/projects/airline.svg",
+      overview: "A relational database covering flights, crew, passengers, tickets, and baggage.",
+      problem: "",
+      role: [
+        "Designed the database and delivered the ER diagram, relational model, data dictionary, and query specifications"
+      ],
+      tech: ["SQL", "ER modelling", "Relational design"],
+      outcomes: [],
+      github: ""
+    },
+    {
+      title: "PSU Campus Preorder System",
+      summary: "Requirements and design for a secure campus food preordering platform.",
+      context: "IS231 Systems Analysis and Design",
+      image: "assets/img/projects/preorder.svg",
+      overview: "An analysis and design project for a platform that lets the PSU community preorder food on campus securely.",
+      problem: "",
+      role: [
+        "Defined the stakeholders, user stories, acceptance criteria, and system requirements",
+        "Modelled the system in UML and C4"
+      ],
+      tech: ["UML", "C4 model", "Requirements analysis"],
+      outcomes: [],
+      github: ""
+    },
+    {
       title: "Non-profit security framework",
       summary: "A defensive network security design for a charitable organization.",
       context: "CYS406 Data and Network Security, team project",
@@ -160,37 +226,21 @@ window.SITE = {
       tech: ["Cisco Packet Tracer"],
       outcomes: [],
       github: ""
-    },
-    {
-      title: "COOP CV Builder",
-      summary: "A web-based CV creation platform.",
-      context: "",                               // TODO e.g. "Course project, team of four"
-      image: "assets/img/projects/cv-builder.svg",
-      overview: "A web-based platform for creating CVs.",
-      problem: "",                               // TODO
-      role: [],                                  // TODO
-      tech: [],                                  // TODO e.g. ["HTML", "CSS", "JavaScript", "Node.js", "MySQL"]
-      outcomes: [],                              // TODO
-      github: ""                                 // TODO
-    },
-    {
-      title: "FitSync",
-      summary: "A fitness management application.",
-      context: "",                               // TODO
-      image: "assets/img/projects/fitsync.svg",
-      overview: "An application for managing fitness activity.",
-      problem: "",                               // TODO
-      role: [],                                  // TODO
-      tech: [],                                  // TODO
-      outcomes: [],                              // TODO
-      github: ""                                 // TODO
     }
   ],
 
   /* ---------- Certifications & professional development ---------- */
   certifications: [
-    { name: "Security Operations Center (SOC) Program", issuer: "Tuwaiq Academy", date: "", link: "" },
-    { name: "Forward Program", issuer: "McKinsey.org", date: "2026", link: "" }
+    { name: "Security Operations Center (SOC) Program", issuer: "Tuwaiq Academy, 30 hours, credential ID g0w2XkR", date: "Sep 2026", link: "" },
+    { name: "ISO 8000 Master Data Quality Manager (MDQM)", issuer: "ECCMA", date: "2026", link: "" },
+    { name: "Governance & Internal Audit: Information Technology and Information Security", issuer: "Elm, Jisoor Program", date: "Aug 2026", link: "" },
+    { name: "Forward Program", issuer: "McKinsey.org, in progress", date: "2026", link: "" },
+    { name: "Cybersecurity Workshop", issuer: "Network Binary", date: "2026", link: "" },
+    { name: "AI Safety & Security Ambassador", issuer: "Elm Virtual Student Club", date: "2026", link: "https://www.credly.com/badges/1dfb61ad-d657-4f1f-ad5b-6cb03ec3f05d" },
+    { name: "Virtual Tourism Hackathon Program", issuer: "Tourism Development Fund (TDF Grow)", date: "2026", link: "" },
+    { name: "Systems Security Certified Practitioner (SSCP) Specialization", issuer: "ISC2, via Coursera", date: "2025", link: "" },
+    { name: "Agile Software Development", issuer: "Coursera", date: "2025", link: "https://www.coursera.org/account/accomplishments/verify/5R7GGA8G59CA" },
+    { name: "Enterprise Data Architecture and Operations", issuer: "Coursera", date: "2025", link: "https://www.coursera.org/account/accomplishments/verify/NETJ1Y4OZ2Y0" }
     /* Template:
     ,{ name: "", issuer: "", date: "", link: "" }
     */
@@ -201,23 +251,25 @@ window.SITE = {
   skills: [
     {
       group: "Cybersecurity",
-      items: ["SIEM & Splunk", "Log analysis", "Threat intelligence", "Incident response", "Security operations"]
+      items: ["SIEM", "Log analysis", "Threat detection", "Incident investigation", "Network security fundamentals", "Web application security", "Penetration testing", "Burp Suite, TryHackMe, Cisco Packet Tracer"]
     },
     {
       group: "Business & consulting",
-      items: ["Business analysis", "Problem solving", "Research & analysis", "Presentation skills", "Strategic thinking"]
+      items: ["Systems analysis and design", "Business analysis", "Problem solving", "Research & analysis", "Project planning (WBS, Gantt, risk)", "Agile and Scrum", "Presentation skills"]
     },
     {
       group: "Technical",
-      items: ["HTML, CSS, JavaScript", "Python", "SQL", "MySQL", "PostgreSQL", "Node.js", "Flutter", "FastAPI"]
+      items: ["Flutter", "Java", "SQL and database design", "MySQL", "HTML, CSS, JavaScript", "Bootstrap", "Node.js & Express", "UML"]
     }
   ],
 
   /* ---------- Leadership & activities ---------- */
   leadership: [
-    { name: "Consultancy Route for Students", role: "Case Team and Media Team", date: "", description: "" },  // TODO description
-    { name: "Career Expo", role: "Volunteer", date: "", description: "" },                                     // TODO
-    { name: "International Conference on Data Science and ML Applications (CDMA 2025)", role: "", date: "2025", description: "" }, // TODO role
-    { name: "Elm Virtual Club", role: "", date: "", description: "" }                                           // TODO
+    { name: "Consultancy Route for Students", role: "Cases Team Member, previously Media Team Member", date: "2023 – Present", description: "More than three years with the club, first on the Media Team and since April 2026 on the Cases Team, working on student consulting cases." },
+    { name: "Elm Virtual Club", role: "Operations Committee Member", date: "Mar 2026 – Present", description: "Help run the club's operations and activities; recognized with a membership certificate for my contributions." },
+    { name: "PNU Tourism Hackathon", role: "Participant, Princess Nourah bint Abdulrahman University", date: "Oct 2026", description: "" },
+    { name: "Career Expo, Prince Sultan University", role: "Contributor, Media Team", date: "2024 – 2026", description: "Contributed to the university's Career Expo three years running." },
+    { name: "CDMA 2025 International Conference, Prince Sultan University", role: "Conference Support Team Member", date: "2025", description: "" },
+    { name: "AHHIL Consultathon, King Saud University", role: "Semi-finalist", date: "2023", description: "" }
   ]
 };
