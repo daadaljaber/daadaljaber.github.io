@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,13 +15,15 @@
   <meta property="og:description" content="Bridging technology, security, and business strategy.">
   <meta property="og:url" content="https://daadaljaber.github.io/">
   <meta property="og:image" content="https://daadaljaber.github.io/assets/img/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="ar_SA">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@500..900&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="assets/css/style.css">
 
@@ -30,37 +32,61 @@
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Daad Aljaber",
+    "alternateName": "دعد الجابر",
     "url": "https://daadaljaber.github.io/",
     "jobTitle": "Information Systems student, Cybersecurity track",
     "alumniOf": { "@type": "CollegeOrUniversity", "name": "Prince Sultan University" },
     "address": { "@type": "PostalAddress", "addressLocality": "Riyadh", "addressCountry": "SA" },
-    "sameAs": ["https://github.com/daadaljaber"]
+    "sameAs": ["https://github.com/daadaljaber", "https://www.linkedin.com/in/daadaljaber"]
   }
   </script>
 
-  <script>document.documentElement.classList.add("js");</script>
-  <!-- Content lives in data.js: edit that file to update the site. -->
+  <!-- Pick the language before the page draws, so Arabic visitors never see a flash of English.
+       Order: ?lang= in the address, then the visitor's last choice, then their browser language. -->
+  <script>
+    (function () {
+      var d = document.documentElement, lang = "en";
+      try {
+        var q = new URLSearchParams(location.search).get("lang");
+        var saved = localStorage.getItem("lang");
+        if (q === "ar" || q === "en") lang = q;
+        else if (saved === "ar" || saved === "en") lang = saved;
+        else if ((navigator.language || "").toLowerCase().indexOf("ar") === 0) lang = "ar";
+      } catch (e) {}
+      d.lang = lang;
+      d.dir = lang === "ar" ? "rtl" : "ltr";
+      d.classList.add("js");
+      if (lang === "ar") {
+        d.classList.add("i18n-pending");
+        setTimeout(function () { d.classList.remove("i18n-pending"); }, 2000);
+      }
+    })();
+  </script>
+
+  <!-- Content: data.js (experience, projects…) and i18n.js (page text). -->
   <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/i18n.js" defer></script>
   <script src="assets/js/main.js" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
 
   <header class="nav" id="top">
     <div class="nav__inner wrap">
-      <a class="nav__brand" href="#top" aria-label="Daad Aljaber, back to top">Daad Aljaber</a>
-      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu">
-        <span class="nav__toggle-label">Menu</span>
-      </button>
+      <a class="nav__brand" href="#top" data-i18n="brand" data-i18n-aria="brand.aria" aria-label="Daad Aljaber, back to top">Daad Aljaber</a>
       <nav class="nav__menu" id="nav-menu" aria-label="Primary">
         <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#work">Work</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#about" data-i18n="nav.about">About</a></li>
+          <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+          <li><a href="#work" data-i18n="nav.work">Work</a></li>
+          <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
         </ul>
       </nav>
+      <button class="nav__lang" type="button" data-lang-toggle data-i18n="lang.switch" data-i18n-aria="lang.switch.aria" lang="ar" aria-label="اعرض الموقع بالعربية">العربية</button>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu">
+        <span class="nav__toggle-label" data-i18n="nav.menu">Menu</span>
+      </button>
     </div>
   </header>
 
@@ -69,30 +95,30 @@
     <section class="hero wrap" aria-labelledby="hero-name">
       <div class="hero__block" aria-hidden="true">
         <canvas class="hero__canvas"></canvas>
-        <span class="hero__coords">Riyadh, Saudi Arabia</span>
+        <span class="hero__coords" data-i18n="hero.place">Riyadh, Saudi Arabia</span>
       </div>
 
       <h1 class="hero__name" id="hero-name">
-        <span class="hero__line">Daad</span>
-        <span class="hero__line">Aljaber</span>
+        <span class="hero__line" data-i18n="hero.first">Daad</span>
+        <span class="hero__line" data-i18n="hero.last">Aljaber</span>
       </h1>
 
       <div class="hero__intro">
-        <ul class="hero__roles" aria-label="Focus areas">
-          <li>Information Systems</li>
-          <li>Cybersecurity</li>
-          <li>Consulting</li>
+        <ul class="hero__roles" data-i18n-aria="hero.roles.aria" aria-label="Focus areas">
+          <li data-i18n="hero.role1">Information Systems</li>
+          <li data-i18n="hero.role2">Cybersecurity</li>
+          <li data-i18n="hero.role3">Consulting</li>
         </ul>
-        <p class="hero__tagline">Bridging technology, security, and business strategy.</p>
-        <p class="hero__lede">
+        <p class="hero__tagline" data-i18n="hero.tagline">Bridging technology, security, and business strategy.</p>
+        <p class="hero__lede" data-i18n="hero.lede">
           I’m an Information Systems student at Prince Sultan University on the cybersecurity track.
           I’m most interested in the space where security decisions become business decisions:
           governance, risk, compliance, and the systems organizations depend on.
         </p>
         <div class="hero__actions">
-          <a class="btn btn--solid" href="#work">View my work</a>
-          <a class="btn btn--line" data-cv-link href="assets/cv/Daad-Aljaber-CV.pdf" download>Download CV</a>
-          <a class="btn btn--line" href="#contact">Contact me</a>
+          <a class="btn btn--solid" href="#work" data-i18n="btn.work">View my work</a>
+          <a class="btn btn--line" data-cv-link href="assets/cv/Daad-Aljaber-CV.pdf" download data-i18n="btn.cv">Download CV</a>
+          <a class="btn btn--line" href="#contact" data-i18n="btn.contact">Contact me</a>
         </div>
         <ul class="hero__social" data-social></ul>
       </div>
@@ -101,30 +127,31 @@
     <!-- ABOUT -->
     <section class="section wrap" id="about" aria-labelledby="about-title">
       <header class="section__head">
-        <h2 id="about-title">About</h2>
+        <h2 id="about-title" data-i18n="about.title">About</h2>
       </header>
       <div class="section__body about">
         <div class="about__text">
-          <p class="about__lead">
+          <p class="about__lead" data-i18n="about.lead">
             I study how information systems are built, run, and protected, and I’m drawn to the questions
             that sit above the technology: what’s at risk, who owns it, and what the business should do about it.
           </p>
-          <p>
+          <p data-i18n="about.p1">
             I’m completing a Bachelor of Science in Information Systems at Prince Sultan University, specializing
             in cybersecurity. My coursework has taken me through secure software development, penetration testing,
-            and network defense, and my security operations training covers SIEM work, log analysis, and incident response.
+            network defense, and cybersecurity risk management and governance, and my security operations training
+            covers SIEM work, log analysis, and incident response.
           </p>
-          <p>
+          <p data-i18n="about.p2">
             Alongside my studies I work on student consulting cases with the Consultancy Route for Students, and I’m
             part of the McKinsey.org Forward Program. Those experiences shape how I approach security: as a way to solve
             business problems, support digital transformation, and help organizations take risk on purpose rather than by accident.
           </p>
         </div>
         <dl class="facts">
-          <div><dt>Based in</dt><dd>Riyadh, Saudi Arabia</dd></div>
-          <div><dt>Studying</dt><dd>BS Information Systems, Cybersecurity track</dd></div>
-          <div><dt>Interests</dt><dd>Cybersecurity consulting, GRC, risk management, digital transformation</dd></div>
-          <div><dt>Open to</dt><dd>Internships and graduate roles in cybersecurity and consulting</dd></div>
+          <div><dt data-i18n="fact.based">Based in</dt><dd data-i18n="fact.based.v">Riyadh, Saudi Arabia</dd></div>
+          <div><dt data-i18n="fact.study">Studying</dt><dd data-i18n="fact.study.v">BS Information Systems, Cybersecurity track</dd></div>
+          <div><dt data-i18n="fact.interests">Interests</dt><dd data-i18n="fact.interests.v">Cybersecurity consulting, GRC, risk management, digital transformation</dd></div>
+          <div><dt data-i18n="fact.open">Open to</dt><dd data-i18n="fact.open.v">Internships and graduate roles in cybersecurity and consulting</dd></div>
         </dl>
       </div>
     </section>
@@ -132,7 +159,7 @@
     <!-- EDUCATION -->
     <section class="section wrap" id="education" aria-labelledby="education-title">
       <header class="section__head">
-        <h2 id="education-title">Education</h2>
+        <h2 id="education-title" data-i18n="edu.title">Education</h2>
       </header>
       <div class="section__body" data-render="education"></div>
     </section>
@@ -140,8 +167,8 @@
     <!-- EXPERIENCE -->
     <section class="section wrap" id="experience" aria-labelledby="experience-title">
       <header class="section__head">
-        <h2 id="experience-title">Experience &amp; programs</h2>
-        <p>Industry, training, and student consulting.</p>
+        <h2 id="experience-title" data-i18n="exp.title">Experience &amp; programs</h2>
+        <p data-i18n="exp.desc">Industry, training, and student consulting.</p>
       </header>
       <ol class="section__body timeline" data-render="experience"></ol>
     </section>
@@ -150,8 +177,8 @@
     <section class="band" id="work" aria-labelledby="work-title">
       <div class="section wrap">
         <header class="section__head">
-          <h2 id="work-title">Selected work</h2>
-          <p>Open a project to see the problem, my role, and what came out of it.</p>
+          <h2 id="work-title" data-i18n="work.title">Selected work</h2>
+          <p data-i18n="work.desc">Open a project to see the problem, my role, and what came out of it.</p>
         </header>
         <div class="section__body">
           <ul class="projects" data-render="projects"></ul>
@@ -162,7 +189,7 @@
     <!-- CERTIFICATIONS -->
     <section class="section wrap" id="certifications" aria-labelledby="cert-title">
       <header class="section__head">
-        <h2 id="cert-title">Certifications &amp; development</h2>
+        <h2 id="cert-title" data-i18n="cert.title">Certifications &amp; development</h2>
       </header>
       <ul class="section__body ledger" data-render="certifications"></ul>
     </section>
@@ -170,8 +197,8 @@
     <!-- SKILLS -->
     <section class="section wrap" id="skills" aria-labelledby="skills-title">
       <header class="section__head">
-        <h2 id="skills-title">Skills</h2>
-        <p>Grounded in coursework, training, and projects listed on this page.</p>
+        <h2 id="skills-title" data-i18n="skills.title">Skills</h2>
+        <p data-i18n="skills.desc">Grounded in coursework, training, and projects listed on this page.</p>
       </header>
       <div class="section__body skills" data-render="skills"></div>
     </section>
@@ -179,7 +206,7 @@
     <!-- LEADERSHIP -->
     <section class="section wrap" id="leadership" aria-labelledby="leadership-title">
       <header class="section__head">
-        <h2 id="leadership-title">Leadership &amp; activities</h2>
+        <h2 id="leadership-title" data-i18n="lead.title">Leadership &amp; activities</h2>
       </header>
       <ul class="section__body ledger" data-render="leadership"></ul>
     </section>
@@ -187,27 +214,27 @@
     <!-- CONTACT -->
     <section class="section section--contact wrap" id="contact" aria-labelledby="contact-title">
       <header class="section__head">
-        <h2 id="contact-title">Contact</h2>
-        <p>For internships, consulting projects, or a conversation about security and risk.</p>
+        <h2 id="contact-title" data-i18n="contact.title">Contact</h2>
+        <p data-i18n="contact.desc">For internships, consulting projects, or a conversation about security and risk.</p>
       </header>
       <div class="section__body contact">
         <dl class="contact__list" data-contact></dl>
 
         <form class="form" id="contact-form" novalidate>
           <div class="form__row">
-            <label for="cf-name">Your name</label>
+            <label for="cf-name" data-i18n="form.name">Your name</label>
             <input id="cf-name" name="name" type="text" autocomplete="name" required>
           </div>
           <div class="form__row">
-            <label for="cf-email">Your email</label>
-            <input id="cf-email" name="email" type="email" autocomplete="email" required>
+            <label for="cf-email" data-i18n="form.email">Your email</label>
+            <input id="cf-email" name="email" type="email" autocomplete="email" dir="ltr" required>
           </div>
           <div class="form__row">
-            <label for="cf-message">Message</label>
-            <textarea id="cf-message" name="message" rows="5" required></textarea>
+            <label for="cf-message" data-i18n="form.message">Message</label>
+            <textarea id="cf-message" name="message" rows="5" dir="auto" required></textarea>
           </div>
           <div class="form__foot">
-            <button class="btn btn--solid" type="submit">Send message</button>
+            <button class="btn btn--solid" type="submit" data-i18n="form.send">Send message</button>
             <p class="form__status" role="status" aria-live="polite"></p>
           </div>
         </form>
@@ -216,8 +243,8 @@
   </main>
 
   <footer class="footer wrap">
-    <p>© <span data-year></span> Daad Aljaber</p>
-    <a href="#top">Back to top</a>
+    <p>© <span data-year></span> <span data-i18n="footer.name">Daad Aljaber</span></p>
+    <a href="#top" data-i18n="footer.top">Back to top</a>
   </footer>
 
   <noscript>

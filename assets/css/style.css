@@ -14,6 +14,8 @@
 
   /* Type */
   --font: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-ar: "IBM Plex Sans Arabic", "Archivo", Tahoma, sans-serif;
+  --font-ar-display: "Noto Kufi Arabic", "IBM Plex Sans Arabic", Tahoma, sans-serif;
   --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
   --step--1: 0.875rem;
   --step-0:  1.0625rem;
@@ -74,7 +76,7 @@ button, input, textarea { font: inherit; color: inherit; }
 
 .skip-link {
   position: absolute;
-  left: var(--gutter);
+  inset-inline-start: var(--gutter);
   top: -3rem;
   z-index: 100;
   padding: .5rem .875rem;
@@ -112,7 +114,22 @@ button, input, textarea { font: inherit; color: inherit; }
   font-size: var(--step-1);
 }
 
+.nav__menu { margin-inline-start: auto; }
 .nav__menu ul { display: flex; gap: clamp(1.25rem, 3vw, 2.5rem); }
+
+.nav__lang {
+  margin-inline-start: clamp(1.25rem, 3vw, 2.5rem);
+  padding: .35rem .8rem;
+  background: none;
+  border: 1px solid var(--charcoal);
+  font-size: var(--step--1);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color .2s, color .2s;
+}
+.nav__lang:hover { background: var(--black); color: var(--paper); }
+.nav__lang[lang="ar"] { font-family: var(--font-ar); }
+.nav__lang[lang="en"] { font-family: var(--font); }
 .nav__menu a {
   text-decoration: none;
   font-size: var(--step--1);
@@ -136,7 +153,8 @@ button, input, textarea { font: inherit; color: inherit; }
 }
 
 @media (max-width: 760px) {
-  .nav__toggle { display: inline-block; }
+  .nav__toggle { display: inline-block; margin-inline-start: .6rem; }
+  .nav__lang { margin-inline-start: auto; }
   .nav__menu {
     position: absolute;
     inset: var(--nav-h) 0 auto 0;
@@ -200,7 +218,7 @@ button, input, textarea { font: inherit; color: inherit; }
   z-index: 0;
   top: clamp(1rem, 3vw, 2.5rem);
   bottom: clamp(2rem, 5vw, 4rem);
-  left: calc(var(--gutter) + 13%);
+  inset-inline-start: calc(var(--gutter) + 13%);
   width: 31%;
   background: var(--black);
   overflow: hidden;
@@ -210,7 +228,7 @@ button, input, textarea { font: inherit; color: inherit; }
 
 .hero__coords {
   position: absolute;
-  left: 1rem;
+  inset-inline-start: 1rem;
   bottom: .85rem;
   font-size: .75rem;
   color: var(--beige);
@@ -231,7 +249,7 @@ button, input, textarea { font: inherit; color: inherit; }
   margin-top: clamp(2rem, 6vw, 5rem);
 }
 .hero__line { display: block; }
-.hero__line + .hero__line { padding-left: .55em; }
+.hero__line + .hero__line { padding-inline-start: .55em; }
 
 .hero__intro {
   grid-column: 7 / -1;
@@ -302,21 +320,21 @@ button, input, textarea { font: inherit; color: inherit; }
 
 @media (max-width: 900px) {
   .hero__intro { grid-column: 5 / -1; }
-  .hero__block { width: 36%; left: calc(var(--gutter) + 10%); }
+  .hero__block { width: 36%; inset-inline-start: calc(var(--gutter) + 10%); }
 }
 
 @media (max-width: 640px) {
   .hero { min-height: auto; }
   .hero__block {
-    left: auto;
-    right: var(--gutter);
+    inset-inline-start: auto;
+    inset-inline-end: var(--gutter);
     width: 58%;
     top: 1rem;
     bottom: auto;
     height: calc(var(--step-name) * 2.1);
   }
   .hero__intro { grid-column: 1 / -1; margin-top: 3rem; }
-  .hero__line + .hero__line { padding-left: 0; }
+  .hero__line + .hero__line { padding-inline-start: 0; }
   .hero__coords { display: none; }
   .hero__roles li + li::before { margin-inline: .55rem; }
   .hero__roles { font-size: .8125rem; }
@@ -435,12 +453,12 @@ button, input, textarea { font: inherit; color: inherit; }
 .timeline__role { margin-top: .2rem; font-weight: 500; }
 .timeline__desc { margin-top: .85rem; max-width: 62ch; }
 .timeline__list { margin-top: .85rem; }
-.timeline__list li { position: relative; padding-left: 1.1rem; max-width: 62ch; }
+.timeline__list li { position: relative; padding-inline-start: 1.1rem; max-width: 62ch; }
 .timeline__list li + li { margin-top: .35rem; }
 .timeline__list li::before {
   content: "";
   position: absolute;
-  left: 0; top: .72em;
+  inset-inline-start: 0; top: .72em;
   width: .45rem; height: 1px;
   background: var(--charcoal);
 }
@@ -488,7 +506,7 @@ button, input, textarea { font: inherit; color: inherit; }
   padding: 1.6rem 0;
   background: none;
   border: 0;
-  text-align: left;
+  text-align: start;
   cursor: pointer;
   color: var(--paper);
 }
@@ -546,12 +564,12 @@ button, input, textarea { font: inherit; color: inherit; }
 .project__details > div + div { margin-top: 1.25rem; }
 .project__details dt { font-size: var(--step--1); color: #8C877F; }
 .project__details dd { margin-top: .3rem; color: #E5E1DA; max-width: 60ch; }
-.project__details ul:not(.tags) li { position: relative; padding-left: 1.1rem; }
+.project__details ul:not(.tags) li { position: relative; padding-inline-start: 1.1rem; }
 .project__details ul:not(.tags) li + li { margin-top: .3rem; }
 .project__details ul:not(.tags) li::before {
   content: "";
   position: absolute;
-  left: 0; top: .72em;
+  inset-inline-start: 0; top: .72em;
   width: .45rem; height: 1px;
   background: #8C877F;
 }
@@ -670,3 +688,44 @@ button, input, textarea { font: inherit; color: inherit; }
   .project__panel { grid-template-rows: 1fr !important; }
   .project__inner { visibility: visible !important; }
 }
+
+/* ==========================================================================
+   Arabic (right to left)
+   Layout mirrors automatically through logical properties above; this block
+   swaps in Arabic typefaces and relaxes settings that only suit Latin type.
+   ========================================================================== */
+html.i18n-pending body { visibility: hidden; }
+
+html[lang="ar"] body {
+  font-family: var(--font-ar);
+  line-height: 1.85;
+}
+html[lang="ar"] .hero__name,
+html[lang="ar"] .section__head h2,
+html[lang="ar"] .hero__tagline,
+html[lang="ar"] .nav__brand,
+html[lang="ar"] .edu__school,
+html[lang="ar"] .timeline__org,
+html[lang="ar"] .project__title,
+html[lang="ar"] .skills__group h3,
+html[lang="ar"] .notfound h1 {
+  font-family: var(--font-ar-display);
+  letter-spacing: 0;           /* tracking breaks the joins between Arabic letters */
+}
+html[lang="ar"] .hero__name {
+  font-size: calc(var(--step-name) * .82);
+  font-weight: 800;
+  line-height: 1.12;
+}
+html[lang="ar"] .hero__line + .hero__line { padding-inline-start: .35em; }
+html[lang="ar"] .section__head h2 { line-height: 1.35; font-weight: 700; }
+html[lang="ar"] .hero__tagline { line-height: 1.55; font-weight: 700; }
+html[lang="ar"] .edu__school,
+html[lang="ar"] .timeline__org,
+html[lang="ar"] .project__title { line-height: 1.5; font-weight: 700; }
+html[lang="ar"] .ledger__name { line-height: 1.6; }
+html[lang="ar"] .about__lead { line-height: 1.75; }
+html[lang="ar"] .hero__coords { letter-spacing: 0; }
+html[lang="ar"] .section__head h2 { max-width: none; }
+/* Latin names and handles keep their own font and direction inside Arabic text */
+html[lang="ar"] [lang="en"] { font-family: var(--font); }

@@ -13,6 +13,7 @@ Personal website of **Daad Aljaber**, Information Systems student (Cybersecurity
 
 ## Features
 
+- Bilingual: English and Arabic, with a switch in the menu. Arabic reads right to left with Arabic typefaces (IBM Plex Sans Arabic, Noto Kufi Arabic). The visitor's choice is remembered, and `?lang=ar` opens the Arabic version directly (useful for sharing).
 - Plain HTML5, CSS3 and JavaScript — no frameworks, no build step, no dependencies.
 - All content (experience, projects, skills, links) lives in **one file**: `assets/js/data.js`.
 - Empty fields are hidden automatically, so unfinished details never appear on the live site.
@@ -31,7 +32,8 @@ daadaljaber.github.io/
 │   ├── css/
 │   │   └── style.css          # All styles; colours and type are tokens at the top
 │   ├── js/
-│   │   ├── data.js            # ← ALL editable content lives here
+│   │   ├── data.js            # ← Experience, projects, skills… in English + Arabic
+│   │   ├── i18n.js            # ← Page text (menu, buttons, intro, About) in English + Arabic
 │   │   └── main.js            # Rendering, navigation, hero animation, form
 │   ├── img/
 │   │   ├── favicon.svg
@@ -48,12 +50,28 @@ daadaljaber.github.io/
 
 ## Updating content
 
+The site is bilingual. In `data.js`, every entry keeps its English text and an `ar` object with the Arabic version of the same fields:
+
+```js
+{
+  title: "FitSync",
+  summary: "Project plan for an integrated gym management system.",
+  ar: {
+    summary: "خطة مشروع لنظام متكامل لإدارة الصالات الرياضية."
+  }
+}
+```
+
+When you change something, change it in both places. If an Arabic field is missing, the English one is shown, so links, images, and tool names only need to be written once.
+
+
 | To change…                               | Edit                                   |
 |------------------------------------------|----------------------------------------|
 | Email, LinkedIn, GitHub, CV path         | `profile` in `assets/js/data.js`       |
 | Education, experience, projects          | `assets/js/data.js`                    |
 | Certifications, skills, leadership       | `assets/js/data.js`                    |
-| Hero introduction and About biography    | `index.html` (sections `hero`, `about`) |
+| Hero introduction and About biography    | `assets/js/i18n.js` (keys `hero.*`, `about.*`) |
+| Menu, buttons, headings, form text       | `assets/js/i18n.js` |
 | Colours, fonts, spacing                  | Tokens at the top of `assets/css/style.css` |
 | CV                                       | Replace `assets/cv/Daad-Aljaber-CV.pdf` (keep the name) |
 | Project screenshots                      | Add images to `assets/img/projects/` and update each project’s `image` path |
