@@ -93,10 +93,10 @@ window.SITE = {
   projects: [
     {
       title: "YALLA!",
-      summary: "Graduation project: a tourism and activities app for exploring Saudi cities.",
+      summary: "Graduation project: a personalized travel and match-day companion app for visitors and local businesses in Saudi Arabia.",
       context: "Senior project, team of five",
-      image: "assets/img/projects/yalla.svg",
-      overview: "A mobile platform where visitors choose a city, discover activities, plan AI-assisted itineraries, collect digital passport stamps, and book seats for football matches. It has separate experiences for visitors and businesses.",
+      image: "assets/img/projects/yalla.png",
+      overview: "A bilingual mobile app for two groups: visitors to Saudi Arabia and local businesses. Visitors choose a city, discover activities, get AI-generated day plans built around their interests, budget, and match kick-off times, collect stamps in a digital passport, and earn rewards from local businesses. Businesses list their places so they appear in visitors' plans and get insight into the visitors they attract.",
       problem: "Visitors planning a trip around activities and match days have to piece together discovery, itineraries, bookings, and tickets across separate services.",
       role: [
         "Led mobile development and integration of the Flutter app",
@@ -107,52 +107,87 @@ window.SITE = {
       tech: ["Flutter", "FastAPI", "PostgreSQL"],
       outcomes: [
         "Presented at the PSU CCIS Senior Project Expo (Nov 2026)",
+        "886 backend tests and 248 Flutter tests passing at the time of the expo",
         "Concept adapted for the Princess Nourah University tourism hackathon (Oct 2026)"
       ],
       github: ""                                 // TODO repository link
     },
     {
+      title: "Cacti RCE assessment",
+      summary: "Exploiting and defending CVE-2022-46169: unauthenticated remote code execution in Cacti 1.2.22 (CVSS 9.8).",
+      context: "CYS405 Penetration Testing & Ethical Hacking capstone, team shadowStrike (two people)",
+      image: "assets/img/projects/cacti.png",
+      overview: "A full attack-and-defence cycle against a vulnerable Cacti server in the TryHackMe Cactus lab: from reconnaissance and exploitation through post-exploitation, then detection, prevention, and a controlled re-test.",
+      problem: "Cacti 1.2.22 trusts the spoofable X-Forwarded-For header to authorize its remote agent, then passes an unsanitized poller_id into a system call. The result is a critical, unauthenticated path to running commands on the server.",
+      role: [
+        "Phase 1, reconnaissance: ran a full TCP sweep and service/version detection with Nmap, mapping 7 open ports and identifying Cacti on nginx and PHP as the primary target",
+        "Phase 2, vulnerability analysis: confirmed Cacti 1.2.22 from its changelog and traced the root cause: authorization that trusts a spoofable X-Forwarded-For header (CWE-290), and an unsanitized poller_id passed into proc_open() (CWE-78)",
+        "Phase 5, detection: wrote the detection rule that flags any poller_id carrying shell metacharacters, in Sigma, Splunk SPL, and Wazuh"
+      ],
+      tech: ["Nmap", "curl", "Metasploit", "MySQL", "hashcat", "Sigma", "Splunk SPL", "Wazuh", "TryHackMe"],
+      outcomes: [
+        "As a team, achieved unauthenticated remote code execution inside an authorized, isolated lab, then designed a compensating control",
+        "Validated the countermeasure: a legitimate request still returned 200, while the injection attempt was blocked with 403",
+        "Findings: F-01 unauthenticated RCE (Critical, 9.8); F-02 exposed database credentials (High)"
+      ],
+      github: ""
+    },
+    {
+      title: "Defensive security framework for a non-profit",
+      summary: "Network segmentation, hardened controls, and staff training to protect a charity's donor and financial data.",
+      context: "CYS406 Data and Network Security, team of four",
+      image: "assets/img/projects/framework.png",
+      overview: "A security framework for a 100-person charity, mapped to the NIST Cybersecurity Framework and governed by ISO/IEC 27001. It splits the network into three zones behind a Cisco ASA firewall, hardens the switches, and adds policies and phishing training for staff.",
+      problem: "Charities hold valuable donor and financial data on small IT budgets, with staff and volunteers often connecting from unmanaged devices. One phishing email can lead to a breach of the donor database.",
+      role: [
+        "Security Analyst: led the literature review and threat assessment",
+        "Compared NIST CSF and ISO/IEC 27001 and mapped every control to a NIST CSF function",
+        "Designed the three-zone architecture: outside, inside staff LAN, and a secure DMZ for the donor and finance servers"
+      ],
+      tech: ["Cisco Packet Tracer", "Cisco ASA 5506-X", "NIST CSF", "ISO/IEC 27001"],
+      outcomes: [
+        "100% packet loss from a simulated compromised staff PC to the donor and finance servers",
+        "0% packet loss between staff machines, so everyday work kept flowing",
+        "42 unused switch ports shut down across two switches"
+      ],
+      github: ""
+    },
+    {
+      title: "PSU-ClinicLab",
+      summary: "Finding, fixing, and testing security flaws in a clinic web application.",
+      context: "CYS402 Secure Software Development, Team 6 (three people)",
+      image: "assets/img/projects/cliniclab.png",
+      overview: "A clinic app where patients log in, book and search appointments, and staff use an admin page. The team attacked it, fixed three serious flaws, and proved each fix with automated tests.",
+      problem: "One flaw in the app could expose every patient's medical visits, along with the login details of patients and staff.",
+      role: [
+        "Owned Flaw 1, SQL injection: showed that a crafted email logged in as another patient with no password, traced the cause to user input pasted into the SQL query, and fixed it with a parameterized query and hashed password checks",
+        "Proved the fix with an automated test (test_login_injection_is_blocked)",
+        "Solved the PortSwigger lab on SQL injection allowing login bypass"
+      ],
+      tech: ["Python", "Flask", "SQLite", "Jinja2", "pytest", "PortSwigger Web Security Academy"],
+      outcomes: [
+        "Fixed three flaws as a team: SQL injection, stored cross-site scripting, and broken access control",
+        "Added bonus hardening: hashed passwords, a lockout after 5 failed logins, and security headers",
+        "All 8 tests passed on the combined code"
+      ],
+      github: ""
+    },
+    {
       title: "Cybersecurity Labs",
       summary: "Hands-on practice across security operations, web application security, penetration testing, and network defense.",
       context: "Tuwaiq Academy SOC Program and PSU cybersecurity coursework",
-      image: "assets/img/projects/labs.svg",
+      image: "assets/img/projects/labs.png",
       overview: "A collection of practical security work from my SOC training and cybersecurity courses, covering both the defensive and offensive sides of security.",
       problem: "",
       role: [
         "Security operations: SIEM, log analysis, threat detection, and incident investigation (Tuwaiq Academy SOC Program)",
         "Web application security: SQL injection labs with Burp Suite and PortSwigger Web Security Academy (CYS402)",
-        "Penetration testing: exploitation, detection, and mitigation of CVE-2022-46169 in the TryHackMe Cactus room (CYS405)",
-        "Network defense: designing a defensive network in Cisco Packet Tracer (CYS406)"
+        "Penetration testing: exploitation, detection, and mitigation of CVE-2022-46169 with Nmap, Metasploit, and hashcat (CYS405)",
+        "Network defense: a three-zone segmented network behind a Cisco ASA firewall in Packet Tracer (CYS406)"
       ],
       tech: ["SIEM", "Burp Suite", "PortSwigger Web Security Academy", "TryHackMe", "Cisco Packet Tracer"],
       outcomes: [],
       github: ""                                 // optional: link a repo with your lab write-ups
-    },
-    {
-      title: "Cacti RCE assessment",
-      summary: "Applied penetration test of CVE-2022-46169: exploitation, detection, and mitigation.",
-      context: "CYS405 capstone, team shadowStrike",
-      image: "assets/img/projects/cacti.svg",
-      overview: "A graded applied penetration test of an unauthenticated remote code execution vulnerability in Cacti (CVE-2022-46169), using the TryHackMe Cactus room, covering exploitation, detection, and mitigation.",
-      problem: "",
-      role: [],                                  // TODO your part of the assessment
-      tech: ["TryHackMe"],
-      outcomes: [],
-      github: ""
-    },
-    {
-      title: "PSU-ClinicLab",
-      summary: "Finding and fixing security flaws in a clinic web application.",
-      context: "CYS402 Secure Software Development, team of three",
-      image: "assets/img/projects/cliniclab.svg",
-      overview: "A secure software development project in which the team found and fixed a series of security flaws in a clinic application.",
-      problem: "",
-      role: [
-        "Owned the SQL injection workstream: demonstrated a login bypass, replaced it with parameterized queries, and added password hashing"
-      ],
-      tech: ["SQL", "PortSwigger Web Security Academy"],
-      outcomes: [],
-      github: ""
     },
     {
       title: "COOP CV Builder",
@@ -188,42 +223,35 @@ window.SITE = {
     },
     {
       title: "Airline Management System",
-      summary: "A relational database design for running an airline.",
-      context: "IS241 Database Management and Applications",
-      image: "assets/img/projects/airline.svg",
-      overview: "A relational database covering flights, crew, passengers, tickets, and baggage.",
-      problem: "",
+      summary: "A relational database that manages flights, bookings, crew, and baggage for an airline.",
+      context: "IS241 Database Management and Applications, team of three",
+      image: "assets/img/projects/airline.png",
+      overview: "A centralized relational database for core airline operations, built around eight entities: passengers, tickets, seats, planes, flights, baggage, airports, and crew members, with crew specialized into pilots and flight attendants.",
+      problem: "Without an automated system, airline operations suffer from data errors, slow booking and scheduling, and difficulty getting accurate information or producing reports.",
       role: [
-        "Designed the database and delivered the ER diagram, relational model, data dictionary, and query specifications"
+        "Defined 11 business rules, then designed the ER diagram, relational model, data dictionary, and search, insert, update, and delete specifications",
+        "Wrote SQL queries for operational questions, such as bags checked per flight, flights with an average fare above 200 that weren't cancelled or delayed, and passengers with no checked baggage"
       ],
       tech: ["SQL", "ER modelling", "Relational design"],
-      outcomes: [],
+      outcomes: ["Delivered a working schema with 11 SQL queries that answer real operational questions"],
       github: ""
     },
     {
       title: "PSU Campus Preorder System",
-      summary: "Requirements and design for a secure campus food preordering platform.",
-      context: "IS231 Systems Analysis and Design",
-      image: "assets/img/projects/preorder.svg",
-      overview: "An analysis and design project for a platform that lets the PSU community preorder food on campus securely.",
-      problem: "",
+      summary: "Requirements and design for a secure food preordering platform at PSU's Food Hub.",
+      context: "IS231 Systems Analysis and Design, team of four",
+      image: "assets/img/projects/preorder.png",
+      overview: "A web-based platform where students, faculty, and staff browse menus, pay online, and preorder meals for scheduled pickup, while restaurant staff manage orders and administrators monitor operations and reports.",
+      problem: "Long queues at the Food Hub during breaks make students late for class, and some skip meals to avoid waiting. We confirmed this by observing the Food Hub and talking with students.",
       role: [
-        "Defined the stakeholders, user stories, acceptance criteria, and system requirements",
-        "Modelled the system in UML and C4"
+        "Domain discovery: stakeholder analysis, on-site observation, and student interviews",
+        "Vision document with measurable success criteria, such as cutting pickup wait time by at least 50%",
+        "Functional and non-functional requirements, including security: university single sign-on, role-based access control, encryption of stored data, and audit logs",
+        "Compliance requirements aligned with the NCA cybersecurity framework, PCI DSS for payments, and GDPR-style privacy practices",
+        "Five user stories with Given/When/Then acceptance criteria",
+        "UML models: use-case diagram, system sequence diagrams, activity diagram, CRC cards, and a design class diagram"
       ],
-      tech: ["UML", "C4 model", "Requirements analysis"],
-      outcomes: [],
-      github: ""
-    },
-    {
-      title: "Non-profit security framework",
-      summary: "A defensive network security design for a charitable organization.",
-      context: "CYS406 Data and Network Security, team project",
-      image: "assets/img/projects/framework.svg",
-      overview: "A defensive security framework for a non-profit charitable organization, modelled in Cisco Packet Tracer.",
-      problem: "",
-      role: [],                                  // TODO
-      tech: ["Cisco Packet Tracer"],
+      tech: ["UML", "Requirements analysis", "User stories", "NCA, PCI DSS compliance"],
       outcomes: [],
       github: ""
     }
@@ -251,7 +279,7 @@ window.SITE = {
   skills: [
     {
       group: "Cybersecurity",
-      items: ["SIEM", "Log analysis", "Threat detection", "Incident investigation", "Network security fundamentals", "Web application security", "Penetration testing", "Burp Suite, TryHackMe, Cisco Packet Tracer"]
+      items: ["SIEM", "Log analysis", "Threat detection", "Incident investigation", "Detection rules (Sigma, Splunk SPL, Wazuh)", "Penetration testing (Nmap, Metasploit)", "Web application security", "Network security and segmentation", "Security frameworks (NIST CSF, ISO/IEC 27001)", "Burp Suite, TryHackMe, Cisco Packet Tracer"]
     },
     {
       group: "Business & consulting",
@@ -259,7 +287,7 @@ window.SITE = {
     },
     {
       group: "Technical",
-      items: ["Flutter", "Java", "SQL and database design", "MySQL", "HTML, CSS, JavaScript", "Bootstrap", "Node.js & Express", "UML"]
+      items: ["Flutter", "Java", "Python (Flask, pytest)", "SQL and database design", "MySQL", "HTML, CSS, JavaScript", "Bootstrap", "Node.js & Express", "UML"]
     }
   ],
 
